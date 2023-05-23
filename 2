@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+</head>
+<body>
+  <h1>Login</h1>
+  <input type="text" id="username" placeholder="Username">
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="login()">Login</button>
+
+  <script>
+    function login() {
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+
+      // Use a biblioteca Octokit ou GitHub REST API para autenticar o usuário
+      // Aqui está um exemplo usando a biblioteca Octokit
+      var octokit = new Octokit();
+      octokit.authenticate({
+        type: 'basic',
+        username: username,
+        password: password
+      })
+      .then(() => {
+        // Autenticação bem-sucedida, redirecione para a página principal
+        window.location.href = 'home.html';
+      })
+      .catch(error => {
+        // Tratamento de erro de autenticação
+        console.error(error);
+        alert('Login failed. Please try again.');
+      });
+    }
+  </script>
+</body>
+</html>
